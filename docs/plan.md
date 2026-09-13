@@ -62,7 +62,7 @@ conflicto resuelto) y documento de evidencias.
 ## Checkpoint 4 — Rama `feature/read-notes` (Estudiante A)
 
 - [ ] Crear rama desde `develop`: `git checkout -b feature/read-notes`.
-- [ ] Implementar `GET /health` → `{ "status": "ok", "environment": "..." }`.
+[x] Implementar GET /health — probado y funcionando, retorna JSON con status.
 - [ ] Implementar `GET /notes` → lista JSON (vacía si no hay notas).
 - [ ] Implementar `GET /notes/{id}` → 200 + nota, o 404 si no existe.
 - [ ] ≥2 commits descriptivos en inglés (ej. `feat: add GET /health endpoint`).
