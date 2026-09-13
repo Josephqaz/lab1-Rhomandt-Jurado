@@ -31,9 +31,9 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 1 — Configuración de entorno (A + B, individual)
 
-- [ ] Cada integrante copia `.env.example` → `.env`.
-- [ ] Cada integrante cambia al menos una variable localmente (ej. `DB_PASSWORD`).
-- [ ] Confirmar `.env` ignorado por git (`git check-ignore .env`).
+- [x] Cada integrante copia `.env.example` → `.env`.
+- [x] Cada integrante cambia al menos una variable localmente (ej. `DB_PASSWORD`).
+- [x] Confirmar `.env` ignorado por git (`git check-ignore .env`).
 
 **Verificación:** `git status` no muestra `.env`.
 
@@ -53,7 +53,7 @@ conflicto resuelto) y documento de evidencias.
 
 - [x] Script SQL de inicialización (`db/init.sql`, montado en `docker-entrypoint-initdb.d`): tabla `notes` con id PK autogenerado, title/content/author NOT NULL, created_at NOT NULL.
 - [x] Estrategia elegida: script SQL de inicialización vía `docker-entrypoint-initdb.d`.
-- [ ] Verificar tabla creada al levantar `db` (`docker compose exec db psql -U $DB_USER -d $DB_NAME -c '\d notes'`).
+- [x] Verificar tabla creada al levantar `db` (`docker compose exec db psql -U $DB_USER -d $DB_NAME -c '\d notes'`).
 
 **Verificación:** tabla `notes` visible con columnas correctas.
 
@@ -106,6 +106,45 @@ conflicto resuelto) y documento de evidencias.
 ---
 
 ## Checkpoint 7 — Resolución del conflicto (Estudiante B)
+
+### En esencia, cómo se resuelve
+
+Git no puede fusionar solo porque las dos ramas cambiaron la(s) misma(s)
+línea(s) del mismo archivo. Git no adivina cuál versión es la correcta — deja
+las dos marcadas en el archivo y te pide decidir a mano.
+
+1. Actualizás tu rama con los cambios ya fusionados de `develop`:
+   ```bash
+   git checkout feature/conflict-student-b
+   git fetch origin
+   git merge origin/develop
+   ```
+2. Git para el merge y marca el archivo en conflicto (ej. `README.md`) así:
+   ```
+   <<<<<<< HEAD
+   contenido de tu rama (feature/conflict-student-b)
+   =======
+   contenido que ya está en develop (viene del PR de A)
+   >>>>>>> origin/develop
+   ```
+3. Abrís el archivo, decidís qué se queda: contenido de arriba, de abajo,
+   una mezcla de ambos, o algo nuevo que una las dos ideas.
+4. Borrás las tres marcas (`<<<<<<<`, `=======`, `>>>>>>>`) — si queda una
+   sola, Git sigue pensando que el conflicto no está resuelto.
+5. Guardás, y le decís a Git que ya resolviste:
+   ```bash
+   git add README.md
+   git commit -m "fix: solved conflict on README.md"
+   git push
+   ```
+6. Refrescás el PR en GitHub — debe pasar de "conflicts must be resolved" a
+   "Able to merge". Fusionás hacia `develop`.
+
+**Nota:** también podés resolverlo directo en la interfaz de GitHub, con el
+editor de conflictos del PR — mismo mecanismo, marcas y decisión, sin usar la
+terminal.
+
+### Checklist
 
 - [ ] Actualizar rama con `develop` (`git fetch origin && git merge origin/develop`, o resolver el conflicto directo en el PR).
 - [ ] Identificar marcas `<<<<<<<`, `=======`, `>>>>>>>`.
