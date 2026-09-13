@@ -43,6 +43,10 @@ notesRouter.put("/notes/:id", async (req, res) => {
     const id = Number(req.params.id);
     const { title, content, author } = req.body;
 
+    if (Number.isNaN(id)) {
+        return res.status(400).json({ message: "Invalid note ID" });
+    }
+
     if (!title || !content || !author) {
         return res.status(400).json({ message: "Title, content and author are required" });
     }
@@ -62,6 +66,10 @@ notesRouter.put("/notes/:id", async (req, res) => {
 
 notesRouter.delete("/notes/:id", async (req, res) => {
     const id = Number(req.params.id);
+
+    if (Number.isNaN(id)) {
+        return res.status(400).json({ message: "Invalid note ID" });
+    }
 
     const resoult = await pool.query("DELETE FROM notes WHERE id = $1 RETURNING *", [id]);
 
