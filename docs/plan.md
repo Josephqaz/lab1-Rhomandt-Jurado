@@ -161,9 +161,20 @@ terminal.
 
 ## Checkpoint 8 — Pruebas e integración final (A + B)
 
-- [ ] Probar los 10 escenarios de la tabla de pruebas (`docs/spec.md`) con curl/Postman.
-- [ ] Prueba de persistencia: crear nota → `docker compose down` (sin `-v`) → `docker compose up` → confirmar que la nota sigue.
-- [ ] Documentar resultados de pruebas (para el PDF de entrega).
+- [x] Probar los 10 escenarios de la tabla de pruebas (`docs/spec.md`) con curl/Postman.
+- [x] Prueba de persistencia: crear nota → `docker compose down` (sin `-v`) → `docker compose up` → confirmar que la nota sigue.
+- [x] Documentar resultados de pruebas (para el PDF de entrega).
+
+**Resultados (2026-09-13):** los 10 escenarios de `docs/spec.md` respondieron
+con el código y contenido esperados (200/201/400/404/204 según corresponda).
+Prueba de persistencia: nota creada antes de `docker compose down` (sin `-v`)
+siguió disponible después de `docker compose up`, confirmando que el volumen
+`db_data` conserva los datos.
+
+**Pendiente conocido:** `GET /notes/:id` valida `NaN` después de la query, no
+antes (a diferencia de `PUT`/`DELETE`, ya corregidos). No afecta los 10
+escenarios requeridos (todos usan ids numéricos), pero queda como mejora
+futura si hay tiempo antes de la entrega.
 - [ ] Abrir PR `develop` → `main`.
 - [ ] Fusionar PR a `main`.
 - [ ] Tag de versión:
