@@ -16,5 +16,9 @@ notesRouter.get("/notes/:id", async (req, res) => {
         return res.status(404).json({ message: "Note not found" });
     }
 
+    if (Number.isNaN(id)) {
+        return res.status(400).json({ message: "Invalid note ID" });
+    }
+
     res.json(resoult.rows[0]);
 });
