@@ -12,7 +12,7 @@ notesRouter.get("/notes/:id", async (req, res) => {
     const id = Number(req.params.id);
     const resoult = await pool.query("SELECT * FROM notes WHERE id = $1", [id]);
 
-    if(resoult.rows.length === 0) {
+    if (resoult.rows.length === 0) {
         return res.status(404).json({ message: "Note not found" });
     }
 
@@ -60,3 +60,15 @@ notesRouter.put("/notes/:id", async (req, res) => {
 });
 
 
+notesRouter.delete("/notes/:id", async (req, res) => {
+    const id = Number(req.params.id);
+
+    const resoult = await pool.query("DELETE FROM notes WHERE id = $1 RETURNING *", [id]);
+
+    if (resoult.rows.length === 0) {
+        return res.status(404).json({ message: "Note not found" });
+    }
+
+    res.status(204).send();
+
+});
