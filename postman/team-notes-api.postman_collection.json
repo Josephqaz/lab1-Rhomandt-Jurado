@@ -5,7 +5,6 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseurl", "value": "http://localhost:8000" },
     { "key": "noteId", "value": "" }
   ],
   "item": [
@@ -13,7 +12,7 @@
       "name": "1. GET /health",
       "request": {
         "method": "GET",
-        "url": "{{baseurl}}/health"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/health"
       },
       "event": [
         {
@@ -31,7 +30,7 @@
       "name": "2. GET /notes (sin registros)",
       "request": {
         "method": "GET",
-        "url": "{{baseurl}}/notes"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes"
       },
       "event": [
         {
@@ -50,7 +49,7 @@
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "{{baseurl}}/notes",
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1\",\n  \"content\": \"c1\",\n  \"author\": \"a1\"\n}"
@@ -75,7 +74,7 @@
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "{{baseurl}}/notes",
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1\"\n}"
@@ -96,7 +95,7 @@
       "name": "5. GET /notes/{id} existente",
       "request": {
         "method": "GET",
-        "url": "{{baseurl}}/notes/{{noteId}}"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}"
       },
       "event": [
         {
@@ -113,7 +112,7 @@
       "name": "6. GET /notes/{id} inexistente",
       "request": {
         "method": "GET",
-        "url": "{{baseurl}}/notes/999999"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999"
       },
       "event": [
         {
@@ -131,7 +130,7 @@
       "request": {
         "method": "PUT",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "{{baseurl}}/notes/{{noteId}}",
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1-edit\",\n  \"content\": \"c1-edit\",\n  \"author\": \"a1\"\n}"
@@ -153,7 +152,7 @@
       "request": {
         "method": "PUT",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "{{baseurl}}/notes/999999",
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"x\",\n  \"content\": \"y\",\n  \"author\": \"z\"\n}"
@@ -174,7 +173,7 @@
       "name": "9. DELETE /notes/{id} existente",
       "request": {
         "method": "DELETE",
-        "url": "{{baseurl}}/notes/{{noteId}}"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}"
       },
       "event": [
         {
@@ -191,7 +190,7 @@
       "name": "10. DELETE /notes/{id} inexistente",
       "request": {
         "method": "DELETE",
-        "url": "{{baseurl}}/notes/999999"
+        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999"
       },
       "event": [
         {
