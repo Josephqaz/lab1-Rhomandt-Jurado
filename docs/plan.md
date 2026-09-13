@@ -61,15 +61,15 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 4 — Rama `feature/read-notes` (Estudiante A)
 
-- [X] Crear rama desde `develop`: `git checkout -b feature/read-notes`.
-- [x] Implementar `GET /health` → `{ "status": "ok", "environment": "..." }`.
-- [x] Implementar `GET /notes` → lista JSON (vacía si no hay notas).
-- [x] Implementar `GET /notes/{id}` → 200 + nota, o 404 si no existe.
-- [x] ≥2 commits descriptivos en inglés (ej. `feat: add GET /health endpoint`).
-- [x] Push: `git push -u origin feature/read-notes`.
-- [x] Abrir PR hacia `develop`, pedir revisión a B.
-- [x] Atender comentario de revisión (corregir o justificar).
-- [x] Fusionar PR a `develop`.
+- [ ] Crear rama desde `develop`: `git checkout -b feature/read-notes`.
+- [ ] Implementar `GET /health` → `{ "status": "ok", "environment": "..." }`.
+- [ ] Implementar `GET /notes` → lista JSON (vacía si no hay notas).
+- [ ] Implementar `GET /notes/{id}` → 200 + nota, o 404 si no existe.
+- [ ] ≥2 commits descriptivos en inglés (ej. `feat: add GET /health endpoint`).
+- [ ] Push: `git push -u origin feature/read-notes`.
+- [ ] Abrir PR hacia `develop`, pedir revisión a B.
+- [ ] Atender comentario de revisión (corregir o justificar).
+- [ ] Fusionar PR a `develop`.
 
 **Verificación:** `curl` a los 3 endpoints en `develop` responde según spec.
 
@@ -77,15 +77,15 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 5 — Rama `feature/write-notes` (Estudiante B)
 
-- [x] Crear rama desde `develop`: `git checkout -b feature/write-notes`.
-- [x] Implementar `POST /notes` → valida obligatorios, genera `id`+`created_at`, guarda en BD, 201; 400 si inválido.
-- [x] Implementar `PUT /notes/{id}` → actualiza si existe (200) o define comportamiento si no existe (404 o upsert 201, documentar elección).
-- [x] Implementar `DELETE /notes/{id}` → elimina si existe (200/204), 404 si no existe.
-- [x] ≥2 commits descriptivos en inglés.
-- [x] Push: `git push -u origin feature/write-notes`.
-- [x] Abrir PR hacia `develop`, pedir revisión a A.
-- [x] Atender comentario de revisión.
-- [x] Fusionar PR a `develop`.
+- [ ] Crear rama desde `develop`: `git checkout -b feature/write-notes`.
+- [ ] Implementar `POST /notes` → valida obligatorios, genera `id`+`created_at`, guarda en BD, 201; 400 si inválido.
+- [ ] Implementar `PUT /notes/{id}` → actualiza si existe (200) o define comportamiento si no existe (404 o upsert 201, documentar elección).
+- [ ] Implementar `DELETE /notes/{id}` → elimina si existe (200/204), 404 si no existe.
+- [ ] ≥2 commits descriptivos en inglés.
+- [ ] Push: `git push -u origin feature/write-notes`.
+- [ ] Abrir PR hacia `develop`, pedir revisión a A.
+- [ ] Atender comentario de revisión.
+- [ ] Fusionar PR a `develop`.
 
 **Verificación:** `curl` POST/PUT/DELETE en `develop` responde según spec.
 
