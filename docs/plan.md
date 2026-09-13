@@ -61,7 +61,7 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 4 — Rama `feature/read-notes` (Estudiante A)
 
-<<<<<<< HEAD
+
 - [ ] Crear rama desde `develop`: `git checkout -b feature/read-notes`.
 [x] Implementar GET /health — probado y funcionando, retorna JSON con status, probado y funcionando con curl.
 - [ ] Implementar `GET /notes` → lista JSON (vacía si no hay notas).
@@ -81,7 +81,7 @@ conflicto resuelto) y documento de evidencias.
 - [x] Abrir PR hacia `develop`, pedir revisión a B.
 - [x] Atender comentario de revisión (corregir o justificar).
 - [x] Fusionar PR a `develop`.
->>>>>>> origin/develop
+
 
 **Verificación:** probado con Postman, los 3 endpoints devuelven el JSON esperado.
 
