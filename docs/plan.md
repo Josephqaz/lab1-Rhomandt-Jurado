@@ -61,15 +61,15 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 4 — Rama `feature/read-notes` (Estudiante A)
 
-[x] Crear rama desde develop: git checkout -b feature/read-notes.
-[x] Implementar GET /health — retorna JSON con status, probado con curl y Postman.
-[x] Implementar GET /notes → lista JSON (vacía si no hay notas).
-[x] Implementar GET /notes/{id} → 200 + nota, o 404 si no existe.
-[x] ≥2 commits descriptivos en inglés (ej. feat: add GET /health endpoint).
-[x] Push: git push -u origin feature/read-notes.
-[x] Abrir PR hacia develop, pedir revisión a B.
-[x] Atender comentario de revisión (corregir o justificar).
-[x] Fusionar PR a develop.
+- [x] Crear rama desde develop: git checkout -b feature/read-notes.
+- [x] Implementar GET /health — retorna JSON con status, probado con curl y Postman.
+- [x] Implementar GET /notes → lista JSON (vacía si no hay notas).
+- [x] Implementar GET /notes/{id} → 200 + nota, o 404 si no existe.
+- [x] ≥2 commits descriptivos en inglés (ej. feat: add GET /health endpoint).
+- [x] Push: git push -u origin feature/read-notes.
+- [x] Abrir PR hacia develop, pedir revisión a B.
+- [x] Atender comentario de revisión (corregir o justificar).
+- [x] Fusionar PR a develop.
 
 **Verificación:** probado con Postman, los 3 endpoints devuelven el JSON esperado.
 
