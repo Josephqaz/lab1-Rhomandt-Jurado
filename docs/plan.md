@@ -71,7 +71,7 @@ conflicto resuelto) y documento de evidencias.
 - [ ] Atender comentario de revisión (corregir o justificar).
 - [ ] Fusionar PR a `develop`.
 
-**Verificación:** `curl` a los 3 endpoints en `develop` responde según spec.
+**Verificación:** probado con Postman, los 3 endpoints devuelven el JSON esperado.
 
 ---
 
