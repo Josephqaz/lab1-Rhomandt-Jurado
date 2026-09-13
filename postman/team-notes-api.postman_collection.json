@@ -1,18 +1,15 @@
 {
   "info": {
     "name": "team-notes-api",
-    "description": "Laboratorio 1 - IS1. Los 10 escenarios de prueba de docs/spec.md.",
+    "description": "Laboratorio 1 - IS1. Los 10 escenarios de prueba de docs/spec.md. Requiere una variable global `baseurl` con la URL de la API (ej. http://localhost:8000). `noteId` se guarda como global en la prueba 3.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "variable": [
-    { "key": "noteId", "value": "" }
-  ],
   "item": [
     {
       "name": "1. GET /health",
       "request": {
         "method": "GET",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/health"
+        "url": "{{baseurl}}/health"
       },
       "event": [
         {
@@ -30,7 +27,7 @@
       "name": "2. GET /notes (sin registros)",
       "request": {
         "method": "GET",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes"
+        "url": "{{baseurl}}/notes"
       },
       "event": [
         {
@@ -49,7 +46,7 @@
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes",
+        "url": "{{baseurl}}/notes",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1\",\n  \"content\": \"c1\",\n  \"author\": \"a1\"\n}"
@@ -63,7 +60,7 @@
               "pm.test('status 201', () => pm.response.to.have.status(201));",
               "const body = pm.response.json();",
               "pm.test('has id and created_at', () => { pm.expect(body).to.have.property('id'); pm.expect(body).to.have.property('created_at'); });",
-              "pm.collectionVariables.set('noteId', body.id);"
+              "pm.globals.set('noteId', body.id);"
             ]
           }
         }
@@ -74,7 +71,7 @@
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes",
+        "url": "{{baseurl}}/notes",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1\"\n}"
@@ -95,7 +92,7 @@
       "name": "5. GET /notes/{id} existente",
       "request": {
         "method": "GET",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}"
+        "url": "{{baseurl}}/notes/{{noteId}}"
       },
       "event": [
         {
@@ -112,7 +109,7 @@
       "name": "6. GET /notes/{id} inexistente",
       "request": {
         "method": "GET",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999"
+        "url": "{{baseurl}}/notes/999999"
       },
       "event": [
         {
@@ -130,7 +127,7 @@
       "request": {
         "method": "PUT",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}",
+        "url": "{{baseurl}}/notes/{{noteId}}",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"t1-edit\",\n  \"content\": \"c1-edit\",\n  \"author\": \"a1\"\n}"
@@ -152,7 +149,7 @@
       "request": {
         "method": "PUT",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999",
+        "url": "{{baseurl}}/notes/999999",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"x\",\n  \"content\": \"y\",\n  \"author\": \"z\"\n}"
@@ -173,7 +170,7 @@
       "name": "9. DELETE /notes/{id} existente",
       "request": {
         "method": "DELETE",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/{{noteId}}"
+        "url": "{{baseurl}}/notes/{{noteId}}"
       },
       "event": [
         {
@@ -190,7 +187,7 @@
       "name": "10. DELETE /notes/{id} inexistente",
       "request": {
         "method": "DELETE",
-        "url": "http://taller-postman-x2sun7-dd44d3-76-13-96-100.sslip.io/notes/999999"
+        "url": "{{baseurl}}/notes/999999"
       },
       "event": [
         {
