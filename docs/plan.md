@@ -20,10 +20,10 @@ conflicto resuelto) y documento de evidencias.
 - [x] Escribir este plan (`docs/plan.md`).
 - [x] `bun init` para scaffolding (package.json, tsconfig, src/index.ts).
 - [x] Instalar `express`, `pg`, `dotenv`; dev deps `@types/express`, `@types/pg`.
-- [ ] Crear repo GitHub público `lab1-Rhomandt-Jurado`, agregar `BiJ3y` colaborador.
-- [ ] Ramas `main` + `develop`, protección en `main` (requiere PR, sin push directo).
+- [x] Crear repo GitHub público `lab1-Rhomandt-Jurado`, agregar `BiJ3y` colaborador (invitación enviada).
+- [x] Ramas `main` + `develop`, protección en `main` (requiere PR con 1 aprobación, sin push directo/force/delete).
 - [x] `README.md`, `.gitignore`, `.dockerignore`, `.env.example`.
-- [ ] Commit inicial y push a `main`; crear `develop` desde `main`.
+- [x] Commit inicial y push a `main`; crear `develop` desde `main`.
 
 **Verificación:** `git log --oneline`, repo visible en GitHub, `develop` existe, `main` protegida.
 
