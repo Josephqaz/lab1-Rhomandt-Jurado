@@ -3,28 +3,34 @@ import { pool } from "../db";
 
 export const notesRouter = Router();
 
+function parseId(raw: string) {
+    const id = Number(raw);
+    return Number.isInteger(id) && id > 0 ? id : null;
+}
+
 notesRouter.get("/notes", async (req, res) => {
     const resoult = await pool.query("SELECT * FROM notes ORDER BY id");
     res.json(resoult.rows);
 });
 
 notesRouter.get("/notes/:id", async (req, res) => {
-    const id = Number(req.params.id);
+    const id = parseId(req.params.id);
+
+    if (id === null) {
+        return res.status(400).json({ message: "Invalid note ID" });
+    }
+
     const resoult = await pool.query("SELECT * FROM notes WHERE id = $1", [id]);
 
     if (resoult.rows.length === 0) {
         return res.status(404).json({ message: "Note not found" });
     }
 
-    if (Number.isNaN(id)) {
-        return res.status(400).json({ message: "Invalid note ID" });
-    }
-
     res.json(resoult.rows[0]);
 });
 
 notesRouter.post("/notes", async (req, res) => {
-    const { title, content, author } = req.body;
+    const { title, content, author } = req.body ?? {};
 
     if (!title || !content || !author) {
         return res.status(400).json({ message: "Title, content and author are required" });
@@ -40,10 +46,10 @@ notesRouter.post("/notes", async (req, res) => {
 });
 
 notesRouter.put("/notes/:id", async (req, res) => {
-    const id = Number(req.params.id);
-    const { title, content, author } = req.body;
+    const id = parseId(req.params.id);
+    const { title, content, author } = req.body ?? {};
 
-    if (Number.isNaN(id)) {
+    if (id === null) {
         return res.status(400).json({ message: "Invalid note ID" });
     }
 
@@ -65,9 +71,9 @@ notesRouter.put("/notes/:id", async (req, res) => {
 
 
 notesRouter.delete("/notes/:id", async (req, res) => {
-    const id = Number(req.params.id);
+    const id = parseId(req.params.id);
 
-    if (Number.isNaN(id)) {
+    if (id === null) {
         return res.status(400).json({ message: "Invalid note ID" });
     }
 
