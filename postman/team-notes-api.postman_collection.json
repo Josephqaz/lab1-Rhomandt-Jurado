@@ -1,0 +1,204 @@
+{
+  "info": {
+    "name": "team-notes-api",
+    "description": "Laboratorio 1 - IS1. Los 10 escenarios de prueba de docs/spec.md. Requiere una variable global `baseurl` con la URL de la API (ej. http://localhost:8000). `noteId` se guarda como global en la prueba 3.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. GET /health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseurl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));",
+              "pm.test('status ok', () => pm.expect(pm.response.json().status).to.eql('ok'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. GET /notes (sin registros)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseurl}}/notes"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));",
+              "pm.test('is array', () => pm.expect(pm.response.json()).to.be.an('array'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. POST /notes valido",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseurl}}/notes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"t1\",\n  \"content\": \"c1\",\n  \"author\": \"a1\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();",
+              "pm.test('has id and created_at', () => { pm.expect(body).to.have.property('id'); pm.expect(body).to.have.property('created_at'); });",
+              "pm.globals.set('noteId', body.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. POST /notes invalido",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseurl}}/notes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"t1\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. GET /notes/{id} existente",
+      "request": {
+        "method": "GET",
+        "url": "{{baseurl}}/notes/{{noteId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. GET /notes/{id} inexistente",
+      "request": {
+        "method": "GET",
+        "url": "{{baseurl}}/notes/999999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. PUT /notes/{id} valido",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseurl}}/notes/{{noteId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"t1-edit\",\n  \"content\": \"c1-edit\",\n  \"author\": \"a1\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. PUT /notes/{id} inexistente",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseurl}}/notes/999999",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"x\",\n  \"content\": \"y\",\n  \"author\": \"z\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. DELETE /notes/{id} existente",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseurl}}/notes/{{noteId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200 or 204', () => pm.expect([200, 204]).to.include(pm.response.code));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. DELETE /notes/{id} inexistente",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseurl}}/notes/999999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

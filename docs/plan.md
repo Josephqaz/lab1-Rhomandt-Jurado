@@ -20,10 +20,10 @@ conflicto resuelto) y documento de evidencias.
 - [x] Escribir este plan (`docs/plan.md`).
 - [x] `bun init` para scaffolding (package.json, tsconfig, src/index.ts).
 - [x] Instalar `express`, `pg`, `dotenv`; dev deps `@types/express`, `@types/pg`.
-- [ ] Crear repo GitHub público `lab1-Rhomandt-Jurado`, agregar `BiJ3y` colaborador.
-- [ ] Ramas `main` + `develop`, protección en `main` (requiere PR, sin push directo).
+- [x] Crear repo GitHub público `lab1-Rhomandt-Jurado`, agregar `BiJ3y` colaborador (invitación enviada).
+- [x] Ramas `main` + `develop`, protección en `main` (requiere PR con 1 aprobación, sin push directo/force/delete).
 - [x] `README.md`, `.gitignore`, `.dockerignore`, `.env.example`.
-- [ ] Commit inicial y push a `main`; crear `develop` desde `main`.
+- [x] Commit inicial y push a `main`; crear `develop` desde `main`.
 
 **Verificación:** `git log --oneline`, repo visible en GitHub, `develop` existe, `main` protegida.
 
@@ -31,9 +31,9 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 1 — Configuración de entorno (A + B, individual)
 
-- [ ] Cada integrante copia `.env.example` → `.env`.
-- [ ] Cada integrante cambia al menos una variable localmente (ej. `DB_PASSWORD`).
-- [ ] Confirmar `.env` ignorado por git (`git check-ignore .env`).
+- [x] Cada integrante copia `.env.example` → `.env`.
+- [x] Cada integrante cambia al menos una variable localmente (ej. `DB_PASSWORD`).
+- [x] Confirmar `.env` ignorado por git (`git check-ignore .env`).
 
 **Verificación:** `git status` no muestra `.env`.
 
@@ -53,7 +53,7 @@ conflicto resuelto) y documento de evidencias.
 
 - [x] Script SQL de inicialización (`db/init.sql`, montado en `docker-entrypoint-initdb.d`): tabla `notes` con id PK autogenerado, title/content/author NOT NULL, created_at NOT NULL.
 - [x] Estrategia elegida: script SQL de inicialización vía `docker-entrypoint-initdb.d`.
-- [ ] Verificar tabla creada al levantar `db` (`docker compose exec db psql -U $DB_USER -d $DB_NAME -c '\d notes'`).
+- [x] Verificar tabla creada al levantar `db` (`docker compose exec db psql -U $DB_USER -d $DB_NAME -c '\d notes'`).
 
 **Verificación:** tabla `notes` visible con columnas correctas.
 
@@ -61,31 +61,31 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 4 — Rama `feature/read-notes` (Estudiante A)
 
-- [ ] Crear rama desde `develop`: `git checkout -b feature/read-notes`.
-- [ ] Implementar `GET /health` → `{ "status": "ok", "environment": "..." }`.
-- [ ] Implementar `GET /notes` → lista JSON (vacía si no hay notas).
-- [ ] Implementar `GET /notes/{id}` → 200 + nota, o 404 si no existe.
-- [ ] ≥2 commits descriptivos en inglés (ej. `feat: add GET /health endpoint`).
-- [ ] Push: `git push -u origin feature/read-notes`.
-- [ ] Abrir PR hacia `develop`, pedir revisión a B.
-- [ ] Atender comentario de revisión (corregir o justificar).
-- [ ] Fusionar PR a `develop`.
+- [x] Crear rama desde develop: git checkout -b feature/read-notes.
+- [x] Implementar GET /health — retorna JSON con status, probado con curl y Postman.
+- [x] Implementar GET /notes → lista JSON (vacía si no hay notas).
+- [x] Implementar GET /notes/{id} → 200 + nota, o 404 si no existe.
+- [x] ≥2 commits descriptivos en inglés (ej. feat: add GET /health endpoint).
+- [x] Push: git push -u origin feature/read-notes.
+- [x] Abrir PR hacia develop, pedir revisión a B.
+- [x] Atender comentario de revisión (corregir o justificar).
+- [x] Fusionar PR a develop.
 
-**Verificación:** `curl` a los 3 endpoints en `develop` responde según spec.
+**Verificación:** probado con Postman, los 3 endpoints devuelven el JSON esperado.
 
 ---
 
 ## Checkpoint 5 — Rama `feature/write-notes` (Estudiante B)
 
-- [ ] Crear rama desde `develop`: `git checkout -b feature/write-notes`.
-- [ ] Implementar `POST /notes` → valida obligatorios, genera `id`+`created_at`, guarda en BD, 201; 400 si inválido.
-- [ ] Implementar `PUT /notes/{id}` → actualiza si existe (200) o define comportamiento si no existe (404 o upsert 201, documentar elección).
-- [ ] Implementar `DELETE /notes/{id}` → elimina si existe (200/204), 404 si no existe.
-- [ ] ≥2 commits descriptivos en inglés.
-- [ ] Push: `git push -u origin feature/write-notes`.
-- [ ] Abrir PR hacia `develop`, pedir revisión a A.
-- [ ] Atender comentario de revisión.
-- [ ] Fusionar PR a `develop`.
+- [x] Crear rama desde `develop`: `git checkout -b feature/write-notes`.
+- [x] Implementar `POST /notes` → valida obligatorios, genera `id`+`created_at`, guarda en BD, 201; 400 si inválido.
+- [x] Implementar `PUT /notes/{id}` → actualiza si existe (200) o define comportamiento si no existe (404 o upsert 201, documentar elección).
+- [x] Implementar `DELETE /notes/{id}` → elimina si existe (200/204), 404 si no existe.
+- [x] ≥2 commits descriptivos en inglés.
+- [x] Push: `git push -u origin feature/write-notes`.
+- [x] Abrir PR hacia `develop`, pedir revisión a A.
+- [x] Atender comentario de revisión.
+- [x] Fusionar PR a `develop`.
 
 **Verificación:** `curl` POST/PUT/DELETE en `develop` responde según spec.
 
@@ -93,19 +93,58 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 6 — Conflicto de merge obligatorio (A + B)
 
-- [ ] Si ya surgió conflicto orgánico en checkpoints 4-5, documentarlo y saltar a Checkpoint 7.
-- [ ] Si no: A crea `feature/conflict-student-a`, B crea `feature/conflict-student-b`.
-- [ ] Ambos editan la misma sección de `README.md` con contenido distinto.
-- [ ] Cada uno hace commit + push de su rama.
-- [ ] Ambos abren PR hacia `develop`.
-- [ ] Fusionar primero el PR de A.
-- [ ] Intentar fusionar el PR de B → GitHub debe marcar conflicto.
+- [x] Si ya surgió conflicto orgánico en checkpoints 4-5, documentarlo y saltar a Checkpoint 7.
+- [x] Si no: A crea `feature/conflict-student-a`, B crea `feature/conflict-student-b`.
+- [x] Ambos editan la misma sección de `README.md` con contenido distinto.
+- [x] Cada uno hace commit + push de su rama.
+- [x] Ambos abren PR hacia `develop`.
+- [x] Fusionar primero el PR de A.
+- [x] Intentar fusionar el PR de B → GitHub debe marcar conflicto.
 
 **Verificación:** GitHub muestra "This branch has conflicts that must be resolved" en el PR de B.
 
 ---
 
 ## Checkpoint 7 — Resolución del conflicto (Estudiante B)
+
+### En esencia, cómo se resuelve
+
+Git no puede fusionar solo porque las dos ramas cambiaron la(s) misma(s)
+línea(s) del mismo archivo. Git no adivina cuál versión es la correcta — deja
+las dos marcadas en el archivo y te pide decidir a mano.
+
+1. Actualizás tu rama con los cambios ya fusionados de `develop`:
+   ```bash
+   git checkout feature/conflict-student-b
+   git fetch origin
+   git merge origin/develop
+   ```
+2. Git para el merge y marca el archivo en conflicto (ej. `README.md`) así:
+   ```
+   <<<<<<< HEAD
+   contenido de tu rama (feature/conflict-student-b)
+   =======
+   contenido que ya está en develop (viene del PR de A)
+   >>>>>>> origin/develop
+   ```
+3. Abrís el archivo, decidís qué se queda: contenido de arriba, de abajo,
+   una mezcla de ambos, o algo nuevo que una las dos ideas.
+4. Borrás las tres marcas (`<<<<<<<`, `=======`, `>>>>>>>`) — si queda una
+   sola, Git sigue pensando que el conflicto no está resuelto.
+5. Guardás, y le decís a Git que ya resolviste:
+   ```bash
+   git add README.md
+   git commit -m "fix: solved conflict on README.md"
+   git push
+   ```
+6. Refrescás el PR en GitHub — debe pasar de "conflicts must be resolved" a
+   "Able to merge". Fusionás hacia `develop`.
+
+**Nota:** también podés resolverlo directo en la interfaz de GitHub, con el
+editor de conflictos del PR — mismo mecanismo, marcas y decisión, sin usar la
+terminal.
+
+### Checklist
 
 - [ ] Actualizar rama con `develop` (`git fetch origin && git merge origin/develop`, o resolver el conflicto directo en el PR).
 - [ ] Identificar marcas `<<<<<<<`, `=======`, `>>>>>>>`.
@@ -122,9 +161,20 @@ conflicto resuelto) y documento de evidencias.
 
 ## Checkpoint 8 — Pruebas e integración final (A + B)
 
-- [ ] Probar los 10 escenarios de la tabla de pruebas (`docs/spec.md`) con curl/Postman.
-- [ ] Prueba de persistencia: crear nota → `docker compose down` (sin `-v`) → `docker compose up` → confirmar que la nota sigue.
-- [ ] Documentar resultados de pruebas (para el PDF de entrega).
+- [x] Probar los 10 escenarios de la tabla de pruebas (`docs/spec.md`) con curl/Postman.
+- [x] Prueba de persistencia: crear nota → `docker compose down` (sin `-v`) → `docker compose up` → confirmar que la nota sigue.
+- [x] Documentar resultados de pruebas (para el PDF de entrega).
+
+**Resultados (2026-09-13):** los 10 escenarios de `docs/spec.md` respondieron
+con el código y contenido esperados (200/201/400/404/204 según corresponda).
+Prueba de persistencia: nota creada antes de `docker compose down` (sin `-v`)
+siguió disponible después de `docker compose up`, confirmando que el volumen
+`db_data` conserva los datos.
+
+**Pendiente conocido:** `GET /notes/:id` valida `NaN` después de la query, no
+antes (a diferencia de `PUT`/`DELETE`, ya corregidos). No afecta los 10
+escenarios requeridos (todos usan ids numéricos), pero queda como mejora
+futura si hay tiempo antes de la entrega.
 - [ ] Abrir PR `develop` → `main`.
 - [ ] Fusionar PR a `main`.
 - [ ] Tag de versión:

@@ -1,8 +1,9 @@
-import express from "express";
+import express from "express"
+import { healthRouter } from "./routes/health.routes";
+import { notesRouter } from "./routes/notes.routes";
 
 export const app = express();
 
 app.use(express.json());
-
-// Endpoints (/health, /notes) se agregan en las ramas
-// feature/read-notes y feature/write-notes.
+app.use(healthRouter);
+app.use(notesRouter);
