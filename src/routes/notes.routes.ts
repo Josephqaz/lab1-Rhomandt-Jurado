@@ -77,6 +77,6 @@ notesRouter.delete("/notes/:id", async (req, res) => {
         return res.status(404).json({ message: "Note not found" });
     }
 
-    res.status(204).send();
+    res.status(204).send("data deleted successfully");
 
 });
